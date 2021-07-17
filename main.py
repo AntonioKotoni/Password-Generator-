@@ -31,25 +31,25 @@ def password_generator(choice_size, user_special):
     if user_special.lower() == "yes":
         while(choice_size != 0):
             # Making sure that all output has at least one uppercase, one lowercase, one digit, and one special character
-            if size == 4:
+            if choice_size == 4:
                 final_random = (final_random + random.choice(SYMBOLS) + 
                 random.choice(UPCASE_CHARACTERS) + random.choice(LOCASE_CHARACTERS) +
                 random.choice(DIGITS))
-                size = 0
+                choice_size = 0
             else:
                 final_random = final_random + random.choice(COMBINED_LIST)
-                size = size - 1
+                choice_size = choice_size - 1
     # If user does not want special characters
     else:
         while(choice_size != 0):
             # Making sure that all outputs have at least one uppercase, one lowercase, and one digit
-            if size == 3:
+            if choice_size == 3:
                 final_random = (final_random + random.choice(UPCASE_CHARACTERS) + 
                 random.choice(LOCASE_CHARACTERS) + random.choice(DIGITS))
-                size = 0
+                choice_size = 0
             else:
                 final_random = final_random + random.choice(PARTIAL_LIST)
-                size = size - 1
+                choice_size = choice_size - 1
     return(final_random)
 
 
