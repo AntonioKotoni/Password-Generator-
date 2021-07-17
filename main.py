@@ -56,9 +56,9 @@ def password_generator(choice_size, user_special):
 
 
 def user_inputs():
-    clense_bool_one = 0     # Clensing bool variable
-    clense_bool_two = 0
-    clense_bool_three = 0 
+    clense_bool_one = 0     # Clensing Variable for Username/Password Option Validity
+    clense_bool_two = 0     # Clensing Variable for Username/Password Length Validity
+    clense_bool_three = 0   # Clensing Variable for Username/Password Special Character Option Validity
 
 
     # While loop to make sure user input username or password
@@ -73,11 +73,11 @@ def user_inputs():
     while(clense_bool_two == 0):
         # Try except to make sure the program doesn't crash if user inputs letters
         try:
-            size = int(input("How long would you like your", choice, "to be? (Minimum of 4)"))
+            size = int(input("How long would you like your username/password to be? (Minimum of 4)"))
             clense_bool_two = 1
             # If statement to make sure the number is a positive integer 
             if (size < 4 or size % 1 != 0):
-                print("Invalid input. Please make sure yoru input is a positive integer greater than 3.")
+                print("Invalid input. Please make sure your input is a positive integer greater than 3.")
                 clense_bool_two = 0
 
         except:
@@ -85,7 +85,7 @@ def user_inputs():
 
     # While loop to make sure user inputs yes or no
     while(clense_bool_three == 0):
-        special_char = input("Would you like for your", choice, "to have special characters? (yes or no)")
+        special_char = input("Would you like for your username/password to have special characters? (yes or no)")
         if special_char.lower() == "yes" or special_char.lower() == "no":
             clense_bool_three = 1
         else:
@@ -99,12 +99,19 @@ def user_inputs():
 if __name__ == "__main__":
     # Welcoming Message
     print("Welcome to the Random Password Generator")
-    repeat_bool = 1
+    repeat_bool = 1 # Checks if program is ran again
+    valid_bool = 0  # Checks if user response is valid
 
+    # While Loop that allows user to generate more passwords 
     while(repeat_bool == 1):
         user_inputs()
-        password_generator()
-        repeat_bool = int(input("Would you like to generate another random username/password? (yes = 1, no = 0)"))
+        while(valid_bool == 0):
+          try:
+            repeat_bool = int(input("Would you like to generate another random username/password? (yes = 1, no = 0)"))
+            valid_bool = 1
+          except:
+            print("Invalid Input. Please make sure you input '1' for yes or '0' for no.")
+            valid_bool = 0
     
     print("Thank you for using the Random Password Generator. See you later!")
 
